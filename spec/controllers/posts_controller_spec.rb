@@ -45,6 +45,26 @@ RSpec.describe PostsController, type: :controller do
         expect(response).to redirect_to(Post.last)
       end
     end
+
+    context "with invalid params" do
+      it "does not create a new post" do
+        expect {
+          post :create, post: FactoryGirl.attributes_for(:post, name: nil)
+        }.to change(Post, :count).by(0)
+
+        expect {
+          post :create, post: FactoryGirl.attributes_for(:post, body: nil)
+        }.to change(Post, :count).by(0)
+      end
+
+      it "renders the edit template" do
+        post :create, post: FactoryGirl.attributes_for(:post, name: nil)
+        expect(response).to render_template("new")
+
+        post :create, post: FactoryGirl.attributes_for(:post, body: nil)
+        expect(response).to render_template("new")
+      end
+    end
   end
 
   describe "PUT #update" do
@@ -60,6 +80,26 @@ RSpec.describe PostsController, type: :controller do
         post = FactoryGirl.create(:post)
         put :update, id: post.id, post: FactoryGirl.attributes_for(:post, name: "test")
         expect(response).to redirect_to(post)
+      end
+    end
+
+    context "with invalid params" do
+      it "does not update the requested post" do
+        post = FactoryGirl.create(:post)
+        put :update, id: post.id, post: FactoryGirl.attributes_for(:post, name: nil)
+        expect(post.name).to_not eq(nil)
+
+        put :update, id: post.id, post: FactoryGirl.attributes_for(:post, body: nil)
+        expect(post.body).to_not eq(nil)
+      end
+
+      it "renders the edit template" do
+        post = FactoryGirl.create(:post)
+        put :update, id: post.id, post: FactoryGirl.attributes_for(:post, name: nil)
+        expect(response).to render_template("edit")
+
+        put :update, id: post.id, post: FactoryGirl.attributes_for(:post, body: nil)
+        expect(response).to render_template("edit")
       end
     end
   end
