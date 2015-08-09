@@ -13,10 +13,17 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Environment Dependencies
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
   #----------
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'faker'
 end
 
 group :production do
