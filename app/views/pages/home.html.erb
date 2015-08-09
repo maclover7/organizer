@@ -4,14 +4,20 @@
 
 <div class="row">
   <div class="col-md-4">
-    <p>Recently Changed:</p>
+    <p><b> Recently Changed: </b></p>
+    <% @posts.each do |post| %>
+      <p> <%= link_to post.name, post %> </p>
+      <hr>
+    <% end %>
   </div>
 
   <div class="col-md-4">
-    <p>Getting Started:</p>
+    <p><b> Getting Started: </b></p>
+
+    <p> <%= link_to "Create a new Post", new_post_path %> </p>
   </div>
 
   <div class="col-md-4">
-    <p>Popular Tags:</p>
+    <p><b> Popular Tags: </b></p>
   </div>
 </div>
