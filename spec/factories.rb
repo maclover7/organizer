@@ -7,6 +7,15 @@ FactoryGirl.define do
     body { Faker::Lorem.paragraph }
   end
 
+  factory :tag do
+    name { Faker::Name.name }
+  end
+
+  factory :tagging do
+    post nil
+    tag nil
+  end
+
   factory :user do
     email { Faker::Internet.email }
     name { Faker::Name.name }

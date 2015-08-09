@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
 
+  login_user
+
   describe "GET #index" do
     it "renders the index template" do
       get :index
