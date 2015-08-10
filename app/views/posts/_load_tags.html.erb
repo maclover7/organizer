@@ -1,0 +1,13 @@
+<script type="text/javascript">
+  function loadTag(tag_name) {
+    var tag = "<li class='search-choice'><span>" + tag_name + "</span><a class='search-choice-close' data-option-array-index='4'></a></li>";
+    $(".chosen-choices").html(tag);
+  };
+
+  <% post.tags.each do |tag| %>
+    window.reload;
+    window.onload = function() {
+      loadTag("<%= tag.name.to_s %>");
+    };
+  <% end %>
+</script>

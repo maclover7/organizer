@@ -1,13 +1,7 @@
 <script type="text/javascript">
-window.reload;
-window.onload = function() {
-  $('#post_tag_list').chosen({
-    allow_single_deselect: true,
-    disable_search_threshold: 10,
-    no_results_text: 'Oops, nothing found!',
-    width: "95%"
-  });
-}
+  window.onload = function() {
+    setupChosen();
+  };
 </script>
 <div class="panel-body">
   <%= form_for @post do |f| %>
@@ -32,7 +26,12 @@ window.onload = function() {
       <%= f.text_area :body, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.select :tag_list, Tag.all.map { |t| [t.name, t.name] }, {include_blank: false}, {class: 'chosen-select', style: "width:350px;", tabindex: "4", multiple: "" } %>
+      <% if @post.id == nil %>
+        <%= f.select :tag_list, Tag.all.map { |t| [t.name, t.name] }, {include_blank: false}, {class: 'chosen-select', style: "width:350px;", tabindex: "4", multiple: "" } %>
+      <% else %>
+        <%= f.select :tag_list, @post.tags.map { |t| [t.name, t.name] }, {include_blank: false}, {class: 'chosen-select', style: "width:350px;", tabindex: "4", multiple: "" } %>
+        <%= render "posts/load_tags", post: @post %>
+      <% end %>
     </div>
     <div class="form-group">
       <%= f.submit "Submit", :class => "btn btn-primary" %>
