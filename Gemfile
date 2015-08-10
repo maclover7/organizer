@@ -13,7 +13,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Organizer Dependencies
 gem 'bootstrap-sass'
-gem 'chosen-rails'
 gem 'devise'
 
 # Environment Dependencies
@@ -21,6 +20,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'pry'
   #----------
   gem 'byebug'
   gem 'web-console', '~> 2.0'

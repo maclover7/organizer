@@ -9,7 +9,8 @@
 </p>
 
 <p>
-Tag IDs: <%= raw @post.tag_list %>
+Tags:
+<%= raw @post.tags.map(&:name).map {|t| t }.join(', ') %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |

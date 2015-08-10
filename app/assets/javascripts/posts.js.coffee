@@ -2,8 +2,4 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ ->
-  $('#post_tag_list').chosen
-    allow_single_deselect: true
-    no_results_text: 'No results matched'
-    width: '200px'
+$('#post_tag_list').chosen();

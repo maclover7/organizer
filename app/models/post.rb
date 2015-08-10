@@ -17,7 +17,8 @@ class Post < ActiveRecord::Base
     tags.map(&:name).join(", ")
   end
 
-  def tag_list=(names)
+  def tag_list=(input_names)
+    names = input_names.join(", ")
     self.tags = names.split(",").map do |n|
       Tag.where(name: n.strip).first_or_create!
     end
